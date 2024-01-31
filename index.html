@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WQI Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 20px auto;
+        }
+        h2 {
+            color: #333;
+            text-align: center;
+        }
+        input[type="number"], input[type="submit"] {
+            width: 95%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        input[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+
+
+        .result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 1.2em;
+        }
+
+
+        #result table {
+        width: 100%;
+        border-collapse: collapse;
+            text-align: center;
+        }
+
+        #result table, #result th, #result td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+
+        #result th {
+            background-color: #f2f2f2;
+        }
+
+
+        /* Popup styling */
+    .popup {
+        display: block;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.6); /* Dimmed background */
+        padding-top: 50px;
+    }
+
+    .popup-content {
+        background-color: #fff;
+        margin: auto;
+        padding: 20px;
+        border-radius: 8px; /* Rounded corners */
+        width: 60%; /* Adjust width as necessary */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        animation: animatetop 0.4s;
+    }
+
+    @keyframes animatetop {
+        from {top: -300px; opacity: 0}
+        to {top: 0; opacity: 1}
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+    }
+
+    /* Table styling */
+    .popup-content table {
+        width: 100%;
+        border-collapse: collapse; /* Ensures borders are connected */
+        margin-top: 15px;
+        font-family: Arial, sans-serif; /* Professional font */
+        font-size: 16px; /* Suitable font size */
+        text-align: center; /* Center aligning text */
+    }
+
+    .popup-content th, 
+    .popup-content td {
+        border: 1px solid #ddd; /* Border for each cell */
+        padding: 10px;
+        vertical-align: middle; /* Vertically centering text */
+    }
+
+    .popup-content th {
+        background-color: #007bff; /* Header background */
+        color: white; /* Header text color */
+        font-weight: normal;
+    }
+
+    .popup-content tr:nth-child(even) {
+        background-color: #f2f2f2; /* Zebra striping for rows */
+    }
+
+    .popup-content tr:hover {
+        background-color: #ddd; /* Row hover effect */
+    }
+
+
+/* Add your existing table styles here */
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Water Quality Index Calculator</h2>
+        <form id="wqiForm">
+            
+            <div class="input-field">
+                <label for="dissolvedOxygen">Dissolved Oxygen (mg/l):</label>
+                <input type="number" id="dissolvedOxygen" name="dissolvedOxygen" step="any">
+            </div>
+            <div class="input-field">
+                <label for="temperature">Temperature (°C):</label>
+                <input type="number" id="temperature" name="temperature" step="any" required>
+            </div>
+            <div class="input-field">
+                <label for="fecalColiform">Fecal Coliform (colonies/100ml):</label>
+                <input type="number" id="fecalColiform" name="fecalColiform" step="any">
+            </div>
+            <div class="input-field">
+                <label for="ph">pH:</label>
+                <input type="number" id="ph" name="ph" step="any">
+            </div>
+            <div class="input-field">
+                <label for="bod5">BOD5 (mg/l):</label>
+                <input type="number" id="bod5" name="bod5" step="any">
+            </div>
+            
+            <div class="input-field">
+                <label for="totalPhosphate">Total Phosphate (mg/l):</label>
+                <input type="number" id="totalPhosphate" name="totalPhosphate" step="any">
+            </div>
+            <div class="input-field">
+                <label for="nitrate">Nitrate (mg/l):</label>
+                <input type="number" id="nitrate" name="nitrate" step="any">
+            </div>
+            <div class="input-field">
+                <label for="turbidity">Turbidity (NTU):</label>
+                <input type="number" id="turbidity" name="turbidity" step="any">
+            </div>
+            <div class="input-field">
+                <label for="totalSolids">Total Solids (mg/l):</label>
+                <input type="number" id="totalSolids" name="totalSolids" step="any">
+            </div>
+
+            <div class="input-field">
+                <label for="tempChange">Temperature Change (°C):</label>
+                <input type="number" id="tempChange" name="tempChange" step="any">
+            </div>
+
+            <input type="submit" value="Calculate WQI" class="submit-btn">
+        </form>
+        <div class="result" id="result"></div>
+    </div>
+    <script src="script.js"></script>
+
+</body>
+</html>
